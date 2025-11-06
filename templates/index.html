@@ -2,58 +2,40 @@
 <html lang="en">
 <head>
 <meta charset="utf-8" />
-<title>India Tourism & Safety</title>
+<title>India Tourism & Crime Visualization</title>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-<!-- Leaflet + Chart.js -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js" defer></script>
 
 <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 <script defer src="{{ url_for('static', filename='js/app.js') }}"></script>
 </head>
 <body>
 
-<!-- LANDING (cinematic) -->
-<div id="landing" aria-hidden="false">
-  <!-- clouds (you provide images) -->
-  <img id="c1" class="cloud" src="{{ url_for('static', filename='assets/cloud.png') }}" alt="cloud">
-  <img id="c2" class="cloud" src="{{ url_for('static', filename='assets/cloud.png') }}" alt="cloud">
-  <img id="c3" class="cloud" src="{{ url_for('static', filename='assets/cloud.png') }}" alt="cloud">
-  <img id="c4" class="cloud" src="{{ url_for('static', filename='assets/cloud.png') }}" alt="cloud">
+<div id="landing">
+  <img src="{{ url_for('static', filename='assets/cloud.png') }}" class="cloud" id="c1">
+  <img src="{{ url_for('static', filename='assets/cloud.png') }}" class="cloud" id="c2">
+  <img src="{{ url_for('static', filename='assets/cloud.png') }}" class="cloud" id="c3">
+  <img src="{{ url_for('static', filename='assets/cloud.png') }}" class="cloud" id="c4">
 
   <div id="welcomeCard">
     <h1>Welcome to India</h1>
-    <p>Discover • Explore • Experience</p>
     <button id="startBtn">Let's Explore ✈️</button>
   </div>
-
   <img id="plane" src="{{ url_for('static', filename='assets/plane.png') }}" alt="plane">
 </div>
 
-<!-- MAP -->
-<div id="mapReveal" aria-hidden="true">
+<div id="mapReveal">
   <div id="map"></div>
 </div>
 
-<!-- Hover tooltip -->
-<div id="miniTooltip"></div>
-
-<!-- RIGHT PANEL (appears only after click) -->
-<aside id="infoPanel" aria-hidden="true">
+<aside id="infoPanel">
   <div id="panelHeader">
-    <div id="stateName">Select a state</div>
-    <button id="closePanel" title="Close">✕</button>
+    <div id="stateName"></div>
+    <button id="closePanel">✕</button>
   </div>
-  <div class="panelButtons">
-    <button class="active" data-tab="spots">Tourist Spots</button>
-    <button data-tab="crime">Crime Rate</button>
-    <button data-tab="prec">Precautions & Helplines</button>
-  </div>
-  <div id="panelContent">
-    <div class="hint">Click a state to view details. You can update content via <code>static/data/stateData.json</code>.</div>
-  </div>
+  <div id="panelContent"></div>
 </aside>
 
 </body>

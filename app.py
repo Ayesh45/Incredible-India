@@ -20,11 +20,10 @@ def api_state_data():
 
 @app.route("/api/india-states")
 def api_india_states():
-    """Return India states GeoJSON if present; otherwise empty so frontend uses fallback."""
     path = os.path.join(DATA_DIR, "india_states.geojson")
     if os.path.exists(path):
         return send_from_directory(DATA_DIR, "india_states.geojson")
-    return jsonify({}), 200  # triggers fallback on the client
+    return jsonify({}), 200
 
 if __name__ == "__main__":
     app.run(debug=True)

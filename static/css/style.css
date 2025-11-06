@@ -1,120 +1,312 @@
-:root{
-  --panel-width: 420px;
-  --indigo: #1e3a8a;
-  --accent: #ff7a59;
-}
-html,body{ height:100%; margin:0; font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, Arial; }
-html,body{ overflow-x:hidden; }
-
-/* LANDING */
-#landing{
-  position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
-  background: linear-gradient(180deg, #dbeafe 0%, #ffffff 80%);
-  z-index: 90; overflow: hidden;
-}
-.cloud{
-  position:absolute; width:50vw; opacity:.92; pointer-events:none;
-  transition: transform 3.5s ease-in-out, opacity 3.5s ease-in-out;
-  filter: drop-shadow(0 20px 60px rgba(0,0,0,.15));
-}
-#c1{ top:10%; left:8%; transform: scale(1.2); }
-#c2{ top:28%; right:8%; transform: scale(1.1); }
-#c3{ bottom:8%; left:20%; transform: scale(1.3); opacity:.85; }
-#c4{ bottom:20%; right:24%; transform: scale(1.2); opacity:.8; }
-
-#plane{
-  position:absolute; width:180px; left:-260px; top:58%;
-  transform: rotate(-18deg);
-  transition: left 5s ease-in-out, top 5s ease-in-out, transform 5s ease-in-out;
-  z-index:92;
-}
-#welcomeCard{
-  position:relative; z-index:91; text-align:center; color:#1e3a8a;
-}
-#welcomeCard h1{ font-size:3.4rem; margin:0; letter-spacing:3px; }
-#welcomeCard p{ margin:8px 0 16px; font-weight:600; }
-#startBtn{
-  padding:12px 26px; font-size:1.05rem; border-radius:10px; border:0; cursor:pointer;
-  background:#1e3a8a; color:white; box-shadow:0 10px 30px rgba(2,6,23,.12);
-}
-#startBtn:hover{ background:#312e81; }
-
-/* MAP */
-#mapReveal{ position:fixed; inset:0; display:flex; opacity:0; transition: opacity .5s ease; }
-#map{
-  flex:1; height:100vh; background-size:cover; background-position:center;
-}
-/* Leaflet clean visuals */
-.leaflet-control-container { display:none; } /* hide all default controls */
-.leaflet-container { background: transparent; }
-
-/* RIGHT PANEL */
-#infoPanel{
-  position: fixed; right: calc(-1 * var(--panel-width)); top:0; width: var(--panel-width); height: 100vh;
-  background: #f9fafb; color:#0f172a; border-left: 3px solid var(--indigo);
-  box-shadow: -30px 0 80px rgba(2,6,23,.18); padding: 18px; transition: right .38s ease;
-  z-index: 110; border-radius: 18px 0 0 18px; overflow-y:auto;
-}
-#infoPanel.open{ right:0; }
-#panelHeader{ display:flex; align-items:center; justify-content:space-between; gap:8px; }
-#stateName{ font-size:1.6rem; font-weight:800; color:var(--indigo); }
-#closePanel{
-  background:#e2e8f0; border:0; border-radius:8px; width:36px; height:36px; font-size:18px; cursor:pointer;
+/* 🌤️ Base Styles */
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
+  overflow: hidden;
+  background: #f8f6f1;
 }
 
-.panelButtons{ display:flex; gap:8px; margin-top:12px; }
-.panelButtons button{
-  flex:1; padding:8px 10px; border-radius:10px; border:0; background:#e2e8f0; color:#0f172a; font-weight:700; cursor:pointer;
+/* ✈️ Landing Animation */
+#landing {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(#b3d9ff, #fdfdfd);
+  z-index: 90;
+  overflow: hidden;
 }
-.panelButtons button.active{ background: #1e3a8a; color:white; }
-
-#panelContent{
-  margin-top:14px; background: white; color:#0f172a;
-  border-radius:10px; padding:12px; box-shadow: 0 10px 30px rgba(2,6,23,.08);
+.cloud {
+  position: absolute;
+  width: 50vw;
+  opacity: 1;
+  filter: blur(1px);
+  transition: transform 3s ease, opacity 3s ease;
 }
-.hint{ color:#475569; }
-
-.spotCard{ margin-bottom:12px; border-radius:10px; overflow:hidden; background:white; box-shadow:0 10px 20px rgba(2,6,23,.06); }
-.spotCard img{ width:100%; height:150px; object-fit:cover; display:block; }
-.spotCard .meta{ padding:10px; }
-
-.precautions-grid{ display:grid; grid-template-columns: 1fr 1fr; gap:12px; }
-.prec-box{ background:#eef2ff; padding:12px; border-radius:10px; }
-.prec-box h4{ margin:0 0 6px 0; color:#1e3a8a; }
-
-/* Tooltip for state names */
-.leaflet-tooltip.state-tip{
-  background: rgba(255,255,255,.95);
-  border: 1px solid #1e3a8a;
-  color:#0f172a;
-  font-weight: 800;
-  border-radius: 6px;
-  padding: 4px 8px;
-  box-shadow: 0 8px 20px rgba(2,6,23,.12);
+#plane {
+  position: absolute;
+  width: 160px;
+  top: 55%;
+  left: -200px;
+  transition: all 3s ease;
 }
-
-/* Make map background image show if provided */
-#map.has-bg::before{
-  content:"";
-  position:absolute; inset:0;
-  background-size: cover; background-position:center;
-  opacity:.18; pointer-events:none;
+#welcomeCard {
+  color: #1e3a8a;
+  text-align: center;
+  z-index: 91;
 }
-
-/* Safety: crop ANY weird overlay from extensions/widgets */
-iframe[style*="right"], div[style*="right"], div[class*="chat"], div[class*="widget"], div[class*="feedback"]{
-  display:none !important;
-}
-
-/* responsive */
-@media (max-width:900px){
-  :root{ --panel-width: 92%; }
-  #welcomeCard h1{ font-size:2.4rem; }
-  .cloud{ width:60vw; }
-  #plane{ width:140px; }
-}
-
-.leaflet-interactive:hover {
-  filter: drop-shadow(0 0 6px rgba(30,58,138,0.8)); /* subtle glow */
+#welcomeCard h1 { font-size: 3rem; }
+#startBtn {
+  background: #1e3a8a;
+  color: white;
+  border: 0;
+  padding: 12px 28px;
+  border-radius: 8px;
   cursor: pointer;
+}
+#mapReveal {
+  position: fixed;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.8s;
+}
+
+/* 🗺️ Map */
+#map { height: 100%; width: 100%; }
+.leaflet-container { background: transparent; }
+.leaflet-control-container { display: none; }
+.leaflet-interactive {
+  stroke-width: 1.3;
+  stroke: #444;
+  fill: rgba(0, 0, 0, 0);
+  transition: stroke 0.3s ease, fill 0.3s ease;
+}
+.leaflet-interactive:hover {
+  fill: rgba(255, 255, 255, 0.05);
+  filter: drop-shadow(0 0 8px rgba(37,99,235,.6));
+  cursor: pointer;
+}
+
+/* 🧭 Side Panel */
+#infoPanel {
+  position: fixed;
+  right: -100vw;
+  top: 0;
+  width: 66vw;
+  height: 100vh;
+  background: #f4efe5;
+  color: #2b2b2b;
+  box-shadow: -5px 0 25px rgba(0,0,0,.25);
+  transition: right .5s ease;
+  padding: 20px;
+  overflow-y: auto;
+  z-index: 110;
+}
+#infoPanel.open { right: 0; }
+#panelHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+#stateName { font-size: 2rem; font-weight: 700; }
+#closePanel {
+  border: 0;
+  background: #e0d8c3;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.section-header h3 { margin: 10px 0; }
+.back-btn {
+  background: #e3dacb;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin-bottom: 8px;
+}
+
+/* 🌸 Category Buttons */
+.category-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  margin-top: 40px;
+}
+.category-btn {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.6rem;
+  padding: 25px 25px;
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #efe7d7, #d7c9b8);
+  color: #2e2a20;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  transition: transform .3s ease, box-shadow .3s ease;
+}
+.category-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+}
+.category-btn .icon { font-size: 2rem; }
+
+/* Button Animations */
+.category-btn:hover .icon.camera {
+  animation: flash .7s ease-in-out;
+}
+@keyframes flash {
+  50% { filter: brightness(3); transform: scale(1.2); }
+}
+.category-btn:hover .icon.chart {
+  animation: bars .8s infinite alternate ease-in-out;
+}
+@keyframes bars {
+  from { transform: scaleY(0.6); }
+  to { transform: scaleY(1.2); }
+}
+.category-btn:hover .icon.locked {
+  animation: lockshake .5s;
+}
+@keyframes lockshake {
+  25% { transform: rotate(-8deg); }
+  50% { transform: rotate(8deg); }
+  75% { transform: rotate(-4deg); }
+  100% { transform: rotate(0); }
+}
+
+/* 🏝️ Tourist Spots Grid */
+/* =============================
+   🏝️ TOURIST SPOTS — FIXED & POLISHED
+============================= */
+/* 🏝️ Tourist Spots Grid – Fixed, Balanced, and Uniform */
+.spots-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* bigger, consistent tiles */
+  gap: 25px;
+  margin-top: 25px;
+  justify-items: center;
+  align-items: stretch;
+}
+
+/* Individual spot cards */
+.spotCard {
+  background: #fff;
+  border-radius: 16px;
+  overflow: hidden;
+  width: 100%;
+  max-width: 340px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: fadeInTile 0.8s ease-out forwards;
+}
+.spotCard:hover {
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Fixed image ratio for consistency */
+.spotCard img {
+  width: 100%;
+  aspect-ratio: 16 / 10; /* maintains natural rectangular look */
+  object-fit: cover;     /* fills without stretching */
+  border-bottom: 1px solid #ddd;
+  transition: transform 0.4s ease;
+}
+.spotCard:hover img {
+  transform: scale(1.05);
+}
+
+/* Text area */
+.spotCard .meta {
+  padding: 14px 12px;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.05rem;
+  background: #fdfdfd;
+  color: #333;
+}
+
+/* Fade-in animation */
+@keyframes fadeInTile {
+  0% { opacity: 0; transform: translateY(25px) scale(0.95); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes fadeInSpot {
+  0% { opacity: 0; transform: translateY(30px) scale(0.98); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Stagger animation using nth-child so they fade in one by one */
+.spotCard:nth-child(1) { animation-delay: 0.1s; }
+.spotCard:nth-child(2) { animation-delay: 0.2s; }
+.spotCard:nth-child(3) { animation-delay: 0.3s; }
+.spotCard:nth-child(4) { animation-delay: 0.4s; }
+.spotCard:nth-child(5) { animation-delay: 0.5s; }
+.spotCard:nth-child(6) { animation-delay: 0.6s; }
+.spotCard:nth-child(7) { animation-delay: 0.7s; }
+.spotCard:nth-child(8) { animation-delay: 0.8s; }
+.spotCard:nth-child(9) { animation-delay: 0.9s; }
+.spotCard:nth-child(10){ animation-delay: 1.0s; }
+
+/* Image layout — fixed height and smooth zoom */
+.spotCard img {
+  width: 100%;
+  height: 260px;                   /* consistent height */
+  min-height: 260px;               /* prevents shrinking */
+  object-fit: cover;               /* no distortion */
+  display: block;
+  border-radius: 14px 14px 0 0;
+  transition: transform 0.5s ease;
+}
+
+/* Zoom on hover */
+.spotCard:hover img {
+  transform: scale(1.05);
+}
+
+/* Title text below */
+.spotCard .meta {
+  padding: 14px 10px;
+  font-weight: 600;
+  text-align: center;
+  background: #fefefe;
+  color: #333;
+  font-size: 1.05rem;
+}
+
+
+/* 📊 Dashboards */
+.dashboard-section {
+  margin-top: 25px;
+}
+.dashboard-section iframe {
+  width: 100%;
+  height: 85vh;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* 🛡️ Precautions */
+.precautions-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-top: 25px;
+  position: relative;
+  z-index: 2;
+}
+.prec-box {
+  background: #f9f6ee;
+  padding: 18px 20px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+.prec-box ul {
+  line-height: 1.6;
+  padding-left: 25px;
+}
+.prec-box h4 { margin-top: 0; }
+
+/* Floating icons BELOW the boxes */
+.precautions-animations {
+  margin-top: 25px;
+  text-align: center;
+  font-size: 3rem;
+  opacity: 0.15;
+  animation: floatIcons 6s infinite linear alternate;
+}
+@keyframes floatIcons {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(25px); }
 }
