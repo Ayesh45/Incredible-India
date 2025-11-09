@@ -165,113 +165,45 @@ function showCategoryButtons(state) {
   `;
 }
 
-// 🌍 Real spots with images
-function getSpots(state) {
-  const data = {
-    "Maharashtra": [
-      { name: "Gateway of India", img: "https://upload.wikimedia.org/wikipedia/commons/7/7e/Gateway_of_India_Mumbai.jpg" },
-      { name: "Ajanta Caves", img: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Ajanta_caves_panorama.jpg" },
-      { name: "Ellora Caves", img: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Kailasanatha_temple_Ellora.jpg" },
-      { name: "Lonavala", img: "https://upload.wikimedia.org/wikipedia/commons/5/57/Lonavala_ghats.jpg" },
-      { name: "Shirdi", img: "https://upload.wikimedia.org/wikipedia/commons/5/53/Shirdi_Temple_Complex.jpg" },
-      { name: "Mahabaleshwar", img: "https://upload.wikimedia.org/wikipedia/commons/8/83/Mahabaleshwar_view_point.jpg" },
-      { name: "Aurangabad", img: "https://upload.wikimedia.org/wikipedia/commons/d/df/Aurangabad_Caves.jpg" },
-      { name: "Nashik", img: "https://upload.wikimedia.org/wikipedia/commons/f/f5/Pandavleni_caves_Nashik.jpg" },
-      { name: "Pune", img: "https://upload.wikimedia.org/wikipedia/commons/2/2d/Shaniwarwada_Pune.jpg" },
-      { name: "Alibaug", img: "https://upload.wikimedia.org/wikipedia/commons/6/61/Alibaug_Fort.jpg" }
-    ],
+// 🏝️ Tourist Spots Section
 
-    "Karnataka": [
-      { name: "Mysore Palace", img: "https://upload.wikimedia.org/wikipedia/commons/d/d2/Mysore_Palace_Morning.jpg" },
-      { name: "Hampi", img: "https://upload.wikimedia.org/wikipedia/commons/9/9d/Hampi_Vittala_Temple_Complex.jpg" },
-      { name: "Coorg", img: "https://upload.wikimedia.org/wikipedia/commons/a/a5/Coorg_hills.jpg" },
-      { name: "Gokarna Beach", img: "https://upload.wikimedia.org/wikipedia/commons/f/fb/Gokarna_beach.jpg" },
-      { name: "Jog Falls", img: "https://upload.wikimedia.org/wikipedia/commons/5/5f/Jog_Falls.jpg" },
-      { name: "Nandi Hills", img: "https://upload.wikimedia.org/wikipedia/commons/4/4c/Nandi_Hills_Sunrise.jpg" },
-      { name: "Badami Caves", img: "https://upload.wikimedia.org/wikipedia/commons/3/3e/Badami_Cave_Temples.jpg" },
-      { name: "Murudeshwar", img: "https://upload.wikimedia.org/wikipedia/commons/3/34/Murudeshwar_Temple.jpg" },
-      { name: "Chikmagalur", img: "https://upload.wikimedia.org/wikipedia/commons/4/4a/Chikmagalur_coffee_plantation.jpg" },
-      { name: "Bandipur National Park", img: "https://upload.wikimedia.org/wikipedia/commons/d/dc/Bandipur_Tiger_Reserve.jpg" }
-    ],
 
-    "Kerala": [
-      { name: "Munnar", img: "https://upload.wikimedia.org/wikipedia/commons/1/1e/Munnar_Tea_Plantations.jpg" },
-      { name: "Alleppey Backwaters", img: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Alleppey_backwaters.jpg" },
-      { name: "Kovalam Beach", img: "https://upload.wikimedia.org/wikipedia/commons/0/0f/Kovalam_Beach_2015.jpg" },
-      { name: "Thekkady", img: "https://upload.wikimedia.org/wikipedia/commons/f/fc/Thekkady_Lake.jpg" },
-      { name: "Wayanad", img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Wayanad_hills.jpg" },
-      { name: "Athirappilly Falls", img: "https://upload.wikimedia.org/wikipedia/commons/1/14/Athirappilly_Waterfalls.jpg" },
-      { name: "Bekal Fort", img: "https://upload.wikimedia.org/wikipedia/commons/9/9b/Bekal_Fort.jpg" },
-      { name: "Kumarakom", img: "https://upload.wikimedia.org/wikipedia/commons/e/e1/Kumarakom_boats.jpg" },
-      { name: "Varkala", img: "https://upload.wikimedia.org/wikipedia/commons/a/a0/Varkala_beach.jpg" },
-      { name: "Thrissur Pooram", img: "https://upload.wikimedia.org/wikipedia/commons/8/8f/Thrissur_Pooram_Festival.jpg" }
-    ],
-
-    "Tamil Nadu": [
-      { name: "Ooty", img: "https://upload.wikimedia.org/wikipedia/commons/3/32/Ooty_Tea_Estate.jpg" },
-      { name: "Kanyakumari", img: "https://upload.wikimedia.org/wikipedia/commons/4/4e/Kanyakumari_Sunrise.jpg" },
-      { name: "Mahabalipuram", img: "https://upload.wikimedia.org/wikipedia/commons/f/f2/Mahabalipuram_Temple.jpg" },
-      { name: "Rameswaram", img: "https://upload.wikimedia.org/wikipedia/commons/7/73/Rameswaram_temple.jpg" },
-      { name: "Chennai Marina Beach", img: "https://upload.wikimedia.org/wikipedia/commons/6/66/Marina_beach_Chennai.jpg" },
-      { name: "Madurai Meenakshi Temple", img: "https://upload.wikimedia.org/wikipedia/commons/5/59/Meenakshi_Amman_Temple_Towers.jpg" },
-      { name: "Kodaikanal", img: "https://upload.wikimedia.org/wikipedia/commons/4/49/Kodaikanal_Lake.jpg" },
-      { name: "Thanjavur", img: "https://upload.wikimedia.org/wikipedia/commons/8/8b/Brihadeeswarar_Temple_Tanjore.jpg" },
-      { name: "Yercaud", img: "https://upload.wikimedia.org/wikipedia/commons/2/2a/Yercaud_Lake.jpg" },
-      { name: "Coimbatore", img: "https://upload.wikimedia.org/wikipedia/commons/b/b9/Adiyogi_Shiva_statue_Coimbatore.jpg" }
-    ]
+// ✨ Optional Tagline (custom per state)
+function getTagline(state) {
+  const quotes = {
+    "Karnataka": "Land of Sandalwood, Hills and Heritage.",
+    "Kerala": "God’s Own Country.",
+    "Tamil Nadu": "Where Culture Meets Coastline.",
+    "Maharashtra": "Gateway to India’s Heritage.",
+    "Rajasthan": "The Desert Jewel of India.",
+    "Puducherry": "Where French Charm Meets Indian Soul."
   };
-  return data[state] || [];
+  return quotes[state] || "Discover the beauty and stories of this region.";
 }
-
-
 
 // 🏝️ Tourist Spots Section
 function showTourism(state) {
   const spots = getSpots(state);
-
-  // Check if spots exist
-  function showTourism(state) {
-  const spots = getSpots(state);
-
-  if (!spots || spots.length === 0) {
-    CONTENT.innerHTML = `
-      <div class="section-header">
-        <button class="back-btn" onclick="showCategoryButtons('${state}')">← Back</button>
-        <h3>Top Tourist Spots in ${state}</h3>
-        <p>No tourist spots available for this state.</p>
-      </div>
-    `;
-    return;
-  }
+  const safeState = state.replace(/\s+/g, "_");
+  const imagePath = `/static/images/states_optimized/${safeState}.jpg`;
 
   CONTENT.innerHTML = `
     <div class="section-header">
       <button class="back-btn" onclick="showCategoryButtons('${state}')">← Back</button>
       <h3>Top Tourist Spots in ${state}</h3>
     </div>
-    <div class="spots-grid">
-      ${spots.map((s, i) => `
-        <div class="spotCard" style="animation-delay:${i * 0.1}s;">
-          <img src="${s.img}" alt="${s.name}">
-          <div class="meta"><strong>${s.name}</strong></div>
-        </div>`).join("")}
-    </div>
-  `;
-}
 
-
-  // Build grid with images from Unsplash for variety
-  CONTENT.innerHTML = `
-    <div class="section-header">
-      <button class="back-btn" onclick="showCategoryButtons('${state}')">← Back</button>
-      <h3>Top Tourist Spots in ${state}</h3>
+    <div class="state-banner">
+      <img src="${imagePath}" alt="${state}" onerror="this.src='/static/images/default.jpg'">
+      <div class="state-tagline">"${getTagline(state)}"</div>
     </div>
-    <div class="spots-grid">
-      ${spots.map((spot, i) => `
-        <div class="spotCard" style="animation-delay:${i * 0.1}s">
-          <img src="https://source.unsplash.com/featured/?${encodeURIComponent(spot)},India" alt="${spot}">
-          <div class="meta"><strong>${spot}</strong></div>
-        </div>`).join('')}
+
+    <div class="spots-grid fancy-grid">
+      ${spots.map(spot => `
+        <div class="spotCardBox">
+          <div class="spotName">${spot}</div>
+        </div>
+      `).join('')}
     </div>
   `;
 }
@@ -339,12 +271,63 @@ function showPrecautions(state) {
 // 🌍 Utility: Real spots by state
 function getSpots(state) {
   const topSpots = {
+    // 🟢 SOUTH INDIA
+    "Andhra Pradesh": ["Tirupati Balaji Temple", "Araku Valley", "Vizag RK Beach", "Lepakshi Temple", "Gandikota Canyon", "Srisailam Temple", "Belum Caves", "Papikondalu", "Nagarjuna Sagar Dam", "Ahobilam Temple"],
+    "Telangana": ["Charminar", "Golconda Fort", "Ramoji Film City", "Warangal Fort", "Birla Mandir Hyderabad", "Hussain Sagar Lake", "Chilkur Balaji Temple", "Bhongir Fort", "Kuntala Waterfalls", "Basar Temple"],
     "Karnataka": ["Mysore Palace", "Hampi", "Coorg", "Gokarna", "Jog Falls", "Badami Caves", "Nandi Hills", "Murudeshwar", "Chikmagalur", "Bandipur National Park"],
-    "Kerala": ["Munnar", "Alleppey", "Wayanad", "Kochi", "Kovalam", "Kumarakom", "Thekkady", "Varkala", "Athirappilly Falls", "Bekal Fort"],
-    "Tamil Nadu": ["Chennai Marina Beach", "Madurai Meenakshi Temple", "Ooty", "Kodaikanal", "Mahabalipuram", "Rameswaram", "Thanjavur", "Yercaud", "Coimbatore", "Kanyakumari"],
-    "Maharashtra": ["Mumbai Gateway of India", "Ajanta Caves", "Ellora Caves", "Lonavala", "Shirdi", "Mahabaleshwar", "Aurangabad", "Nashik", "Pune", "Alibaug"],
-    "Delhi": ["Red Fort", "Qutub Minar", "India Gate", "Lotus Temple", "Humayun’s Tomb", "Akshardham", "Connaught Place", "Chandni Chowk", "Rashtrapati Bhavan", "Lodhi Garden"]
+    "Kerala": ["Munnar", "Alleppey Backwaters", "Kochi", "Wayanad", "Kovalam", "Kumarakom", "Thekkady", "Varkala", "Athirappilly Falls", "Bekal Fort"],
+    "Tamil Nadu": ["Marina Beach", "Meenakshi Temple", "Ooty", "Kodaikanal", "Mahabalipuram", "Rameswaram", "Kanyakumari", "Thanjavur Temple", "Yercaud", "Coimbatore Adiyogi Statue"],
+    "Goa": ["Baga Beach", "Anjuna Beach", "Fort Aguada", "Dudhsagar Falls", "Basilica of Bom Jesus", "Chapora Fort", "Palolem Beach", "Colva Beach", "Se Cathedral", "Spice Plantations"],
+    
+    // 🟡 WEST INDIA
+    "Maharashtra": ["Gateway of India", "Ajanta Caves", "Ellora Caves", "Shirdi", "Lonavala", "Mahabaleshwar", "Pune Shaniwarwada", "Alibaug", "Aurangabad Bibi Ka Maqbara", "Nashik Trimbakeshwar Temple"],
+    "Gujarat": ["Statue of Unity", "Gir National Park", "Somnath Temple", "Dwarkadhish Temple", "Rann of Kutch", "Saputara Hills", "Sabarmati Ashram", "Laxmi Vilas Palace", "Modhera Sun Temple", "Junagadh Fort"],
+    "Rajasthan": ["Jaipur Amer Fort", "Udaipur City Palace", "Jaisalmer Fort", "Mount Abu", "Pushkar Lake", "Mehrangarh Fort", "Hawa Mahal", "Chittorgarh Fort", "Ranthambore National Park", "Bikaner Junagarh Fort"],
+    "Goa": ["Baga Beach", "Calangute Beach", "Fort Aguada", "Chapora Fort", "Se Cathedral", "Basilica of Bom Jesus", "Dudhsagar Falls", "Spice Plantations", "Palolem Beach", "Anjuna Market"],
+
+    // 🟠 CENTRAL INDIA
+    "Madhya Pradesh": ["Khajuraho Temples", "Sanchi Stupa", "Kanha National Park", "Bandhavgarh National Park", "Orchha Fort", "Pachmarhi", "Bhedaghat Marble Rocks", "Ujjain Mahakaleshwar Temple", "Gwalior Fort", "Bhimbetka Caves"],
+    "Chhattisgarh": ["Chitrakote Falls", "Tirathgarh Waterfalls", "Barnawapara Sanctuary", "Bastar Palace", "Kanger Valley National Park", "Rajim Temple", "Sirpur Heritage Site", "Mainpat", "Bhoramdeo Temple", "Dongargarh Temple"],
+
+    // 🔵 NORTH INDIA
+    "Delhi": ["Red Fort", "Qutub Minar", "India Gate", "Lotus Temple", "Humayun’s Tomb", "Akshardham Temple", "Connaught Place", "Chandni Chowk", "Rashtrapati Bhavan", "Lodhi Garden"],
+    "Uttar Pradesh": ["Taj Mahal", "Varanasi Ghats", "Fatehpur Sikri", "Mathura", "Vrindavan", "Ayodhya Ram Mandir", "Lucknow Bara Imambara", "Jhansi Fort", "Agra Fort", "Sarnath"],
+    "Punjab": ["Golden Temple", "Wagah Border", "Jallianwala Bagh", "Chandigarh Rock Garden", "Anandpur Sahib", "Kapurthala Palace", "Ropar Wetland", "Qila Mubarak", "Ludhiana Museum", "Maharaja Ranjit Singh Museum"],
+    "Haryana": ["Kurukshetra", "Pinjore Gardens", "Morni Hills", "Sultanpur Bird Sanctuary", "Damdama Lake", "Kingdom of Dreams", "Tilyar Lake", "Karna Lake", "Panipat Battlefield", "Yadavindra Gardens"],
+    "Himachal Pradesh": ["Shimla Ridge", "Manali", "Kullu Valley", "Dalhousie", "Spiti Valley", "Kinnaur Kailash", "Dharamshala", "Kasol", "Bir Billing", "Chail Palace"],
+    "Uttarakhand": ["Rishikesh", "Haridwar", "Nainital", "Mussoorie", "Jim Corbett", "Auli", "Badrinath Temple", "Kedarnath", "Valley of Flowers", "Lansdowne"],
+    "Jammu and Kashmir": ["Srinagar Dal Lake", "Gulmarg", "Pahalgam", "Sonmarg", "Vaishno Devi", "Leh Palace", "Amarnath Cave", "Kupwara", "Hemis Monastery", "Kargil War Memorial"],
+    "Ladakh": ["Pangong Lake", "Nubra Valley", "Leh Palace", "Magnetic Hill", "Tso Moriri Lake", "Thiksey Monastery", "Zanskar Valley", "Hemis Monastery", "Khardung La", "Diskit Gompa"],
+    "Chandigarh": ["Rock Garden", "Sukhna Lake", "Rose Garden", "Capitol Complex", "Government Museum", "Japanese Garden", "Terraced Garden", "Shanti Kunj", "Elante Mall", "Garden of Fragrance"],
+
+    // 🔴 EAST INDIA
+    "Bihar": ["Bodh Gaya", "Nalanda University Ruins", "Rajgir", "Vaishali", "Patna Museum", "Mahavir Mandir", "Vikramshila", "Kaimur Hills", "Kesaria Stupa", "Pawapuri"],
+    "Jharkhand": ["Betla National Park", "Hundru Falls", "Dassam Falls", "Parasnath Hill", "Ranchi Lake", "Netarhat", "Deoghar Temple", "Patratu Valley", "Hazaribagh", "Jonha Falls"],
+    "Odisha": ["Konark Sun Temple", "Puri Jagannath Temple", "Chilika Lake", "Lingaraja Temple", "Bhitarkanika National Park", "Simlipal National Park", "Dhauli Stupa", "Raghurajpur Heritage Village", "Udayagiri Caves", "Hirakud Dam"],
+    "West Bengal": ["Victoria Memorial", "Howrah Bridge", "Sundarbans", "Darjeeling", "Kalimpong", "Digha Beach", "Belur Math", "Shantiniketan", "Murshidabad Palace", "Bishnupur Temples"],
+    "Sikkim": ["Gangtok", "Tsomgo Lake", "Nathula Pass", "Pelling", "Yuksom", "Rumtek Monastery", "Lachung", "Lachen", "Zuluk", "Namchi"],
+
+    // 🟣 NORTHEAST INDIA
+    "Assam": ["Kaziranga National Park", "Kamakhya Temple", "Majuli Island", "Sivasagar", "Manas National Park", "Hajo", "Pobitora Wildlife Sanctuary", "Tezpur", "Jorhat", "Diphu"],
+    "Arunachal Pradesh": ["Tawang Monastery", "Ziro Valley", "Bomdila", "Itanagar", "Sela Pass", "Dirang", "Namdapha National Park", "Mechuka", "Pasighat", "Roing"],
+    "Nagaland": ["Kohima War Cemetery", "Dzukou Valley", "Khonoma Village", "Tuophema Village", "Japfu Peak", "Mokokchung", "Longleng", "Phek", "Wokha", "Dimapur"],
+    "Manipur": ["Loktak Lake", "Kangla Fort", "Keibul Lamjao National Park", "Ima Keithel Market", "Shirui Hills", "Andro Village", "Tharon Cave", "Kangkhui Cave", "Sendra Island", "Moirang INA Museum"],
+    "Mizoram": ["Aizawl", "Phawngpui Peak", "Reiek", "Hmuifang", "Tam Dil Lake", "Vantawng Falls", "Lunglei", "Serchhip", "Saiha", "Champhai"],
+    "Tripura": ["Ujjayanta Palace", "Neermahal", "Sepahijala Sanctuary", "Unakoti", "Jampui Hills", "Tripura Sundari Temple", "Dumboor Lake", "Chhabimura", "Baramura Hills", "Heritage Park"],
+    "Meghalaya": ["Cherrapunji", "Shillong", "Mawsynram", "Dawki River", "Mawlynnong", "Nohkalikai Falls", "Laitlum Canyons", "Elephant Falls", "Krang Suri Falls", "Umiam Lake"],
+
+    // ⚪ UNION TERRITORIES
+    "Andaman and Nicobar Islands": ["Radhanagar Beach", "Cellular Jail", "Havelock Island", "Neil Island", "Ross Island", "Baratang Caves", "North Bay Island", "Mount Harriet", "Chidiya Tapu", "Long Island"],
+    "Lakshadweep": ["Agatti Island", "Bangaram Island", "Kavaratti", "Kalpeni", "Minicoy", "Kadmat Island", "Thinnakara", "Suheli Par", "Andretti", "Chetlat"],
+    "Puducherry": ["Auroville", "Promenade Beach", "Aurobindo Ashram", "Paradise Beach", "French Quarter", "Serenity Beach", "Chunnambar Boat House", "Manakula Vinayagar Temple", "Bharathi Park", "Botanical Garden"],
+    "Daman and Diu": ["Diu Fort", "Nagoa Beach", "Jampore Beach", "St. Paul’s Church", "Naida Caves", "Devka Beach", "Somnath Mahadev Temple", "INS Khukri Memorial", "Gangeshwar Temple", "Fort of Moti Daman"],
+    "Dadra and Nagar Haveli": ["Vanganga Lake", "Hirwa Van Garden", "Tribal Museum", "Dudhni Lake", "Khanvel", "Satmaliya Deer Park", "Silvassa Church", "Vasona Lion Safari", "Island Garden", "Bindrabin Temple"],
+    "Ladakh": ["Pangong Lake", "Nubra Valley", "Leh Palace", "Magnetic Hill", "Tso Moriri", "Thiksey Monastery", "Khardung La", "Zanskar Valley", "Hemis Monastery", "Diskit Gompa"],
+    "Jammu and Kashmir": ["Srinagar Dal Lake", "Gulmarg", "Pahalgam", "Sonmarg", "Vaishno Devi", "Amarnath Cave", "Leh Palace", "Kupwara", "Hemis Monastery", "Kargil"],
+    "Chandigarh": ["Rock Garden", "Sukhna Lake", "Rose Garden", "Capitol Complex", "Japanese Garden", "Elante Mall", "Shanti Kunj", "Government Museum", "Terraced Garden", "Garden of Fragrance"]
   };
-  return topSpots[state] || ["Taj Mahal", "Golden Temple", "Dal Lake", "Kaziranga", "Khajuraho", "Darjeeling", "Rann of Kutch", "Ganga Aarti", "Sundarbans"];
+
+  return topSpots[state] || [];
 }
+
 
